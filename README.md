@@ -27,7 +27,7 @@ Use this block to search in level two the value with mentioned uid and key. If t
 
 **NOTE:**
 
-Although json structure with spaces and line feed would work, it is recommended to avoid spaces and line feeds instead, use unformatted json to avoid unexpected results.
+Although json structure with spaces and line feed would work, it is recommended to avoid spaces and line feeds. Instead, use unformatted json to avoid unexpected results.
 
 **Simple json**
 
