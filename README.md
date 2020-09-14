@@ -77,3 +77,122 @@ The micro:bit screen will display **temperature** on screen
 
 The micro:bit screen will display **light**, **50** and **lux** on screen
 
+### Guide on json structure
+
+The json strucure should be symmetric, means the key names used in same level jsons should be same, so for example, this will not work:
+
+```diff
+{
+   "0001":{
+      "name":"temperature",
+      "type":"sensor",
+-"description":"weather sensing"
+      "0012":{
+         "scale":"celsius",
+         "value":"37"
+      },
+      "0013":{
+         "scale":"fahrenheit",
+         "value":"98"
+      }
+   },
+   "0002":{
+      "name":"light",
+      "type":"actuator",
+      "0022":{
+         "scale":"lux",
+         "value":"50"
+      }
+   }
+}
+```
+
+
+and this will also not work:
+
+
+```diff
+{
+   "0001":{
+      "name":"temperature",
+      "type":"sensor",
+      "0012":{
+         "scale":"celsius",
+         "value":"37",
+-"maximum":"1000"
+      },
+      "0013":{
+         "scale":"fahrenheit",
+         "value":"98"
+      }
+   },
+   "0002":{
+      "name":"light",
+      "type":"actuator",
+      "0022":{
+         "scale":"lux",
+         "value":"50"
+      }
+   }
+}
+```
+
+
+But, this will work:
+
+```diff
+{
+   "0001":{
+      "name":"temperature",
+      "type":"sensor",
++"description":"weather sensing"
+      "0012":{
+         "scale":"celsius",
+         "value":"37"
+      },
+      "0013":{
+         "scale":"fahrenheit",
+         "value":"98"
+      }
+   },
+   "0002":{
+      "name":"light",
+      "type":"actuator",
++"description":"light sensing"
+      "0022":{
+         "scale":"lux",
+         "value":"50"
+      }
+   }
+}
+```
+
+and so will this:
+
+```diff
+{
+   "0001":{
+      "name":"temperature",
+      "type":"sensor",
+      "0012":{
+         "scale":"celsius",
+         "value":"37",
++"maximum":"1000"
+      },
+      "0013":{
+         "scale":"fahrenheit",
+         "value":"98",
++"maximum":"10000"
+      }
+   },
+   "0002":{
+      "name":"light",
+      "type":"actuator",
+      "0022":{
+         "scale":"lux",
+         "value":"50",
++"maximum":"3000"
+      }
+   }
+}
+```
